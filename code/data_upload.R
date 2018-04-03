@@ -1,8 +1,7 @@
 require(readr)
 require(dplyr)
 
-read_csv("data/ShowdownDataByMatch-detailed.csv")
-
+##Read in data and add week.  Need to automate
 week1<- read_csv("./data/ShowdownDataByMatch-detailed.csv")
 week2<- read_csv("./data/ShowdownDataByMatch-detailed (1).csv")
 week3<- read_csv("./data/ShowdownDataByMatch-detailed (2).csv")
@@ -20,10 +19,14 @@ week6$week <- 6
 week7$week <- 7
 
 all_weeks<- bind_rows(week1,week2,week3,week4,week5,week6,week7)
+all_weeks<- all_weeks[,-c(3:8)] #Dropping team that's not brought.  Need to think about how to model this
 
 require(reshape2)
 
+data_long<- melt(all_weeks, id.vars=c("matchID", "Win", "week"))
 
+colnames(data_long)[5]<- "mon"
 
+write_csv(data_long, "./data/modeldata.csv")
 
 
