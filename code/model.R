@@ -12,7 +12,7 @@ mod1<- lmer(Win ~ (1|mon),
 
 summary(mod1)
 
-##Process model data
+##Process model data, extracting standard errors as well
 effects <- data.frame(ranef(mod1)$mon)
 std_errors <- data.frame(se.ranef(mod1)$mon)
 effects$mon <- rownames(effects)
