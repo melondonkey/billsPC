@@ -27,7 +27,7 @@ parameters <- effects %>% left_join(std_errors, by="mon") %>%
 
 #Very rough effect plot
 ggplot(parameters, aes(x=mon, y=estimate)) + geom_text(aes(label=mon), check_overlap = TRUE) +
-  geom_hline(yintercept = 0, color="red") + ylab("Effect Estimate") +
+  geom_hline(yintercept = 0, color="red") + ylab("Effect Estimate- Above Red Line is Good") +
   geom_linerange(aes(x=mon, ymin=lower_1se, ymax=upper_1se), alpha=.2, color="blue") +
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
